@@ -1,0 +1,24 @@
+# .gitignore
+
+# Python virtual environment .
+
+venv/
+env/
+
+# Databases
+*.sqlite3
+db.sqlite3
+
+# Python files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# operating system
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
