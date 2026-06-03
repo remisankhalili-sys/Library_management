@@ -1,0 +1,60 @@
+<!-- library/templates/library/book_list.html -->
+
+{% extends 'library/base.html' %}
+
+{% block title %}All Books{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary"> Book Collection</h2>
+    <a href="{% url 'book_add' %}" class="btn btn-success btn-lg">
+        <i class="bi bi-plus-circle"></i> Add New Book
+    </a>
+</div>
+
+{% if books %}
+<div class="row">
+    {% for book in books %}
+    <div class="col-md-4 mb-4">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">{{ book.title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">By: {{ book.author.first_name }} {{ book.author.last_name }}</h6>
+                <p class="card-text">
+                    <strong>ISBN:</strong> {{ book.isbn }}<br>
+                    <strong>Published:</strong> {{ book.published_date|date:"Y-m-d"|default:"N/A" }}
+                </p>
+                <a href="{% url 'book_detail' pk=book.pk %}" class="btn btn-outline-primary btn-sm">View Details</a>
+                <a href="{% url 'book_edit' pk=book.pk %}" class="btn btn-outline-secondary btn-sm">Edit</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Pagination -->
+<div class="d-flex justify-content-center">
+    <nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            <li class="page-item disabled"><span class="page-link">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span></li>
+
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+{% else %}
+<div class="alert alert-info text-center">
+    <h4>No books found yet.</h4>
+    <p>Start by adding a new book or author.</p>
+</div>
+{% endif %}
+{% endblock %}
