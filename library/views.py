@@ -73,5 +73,10 @@ class AuthorCreateView(SuccessMessageMixin, CreateView):
         if not form.cleaned_data.get('first_name') or not form.cleaned_data.get('last_name'):
             form.add_error('first_name', "First name is required.")
             return self.form_invalid(form)
-        return super().form_valid(form)
+    
 
+        if not form.cleaned_data.get('last_name'):
+            form.add_error('last_name', "Last name is required.")
+            return self.form_invalid(form)
+            
+        return super().form_valid(form)
