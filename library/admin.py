@@ -23,5 +23,4 @@ class BookAdmin(admin.ModelAdmin):
     search_fields = ('title', 'isbn')
     date_hierarchy = 'published_date'
 
-admin.site.register(Author, AuthorAdmin)
 admin.site.register(Book, BookAdmin)
