@@ -122,8 +122,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# تنظیمات مسیرهای قالب (Template)
-# این کد به دینگو می‌گوید که فایل‌های HTML را در پوشه books/templates پیدا کند
+# Template Path Settings
+# This code tells Dingo to find HTML files in the books/templates folder.
 import os
 from pathlib import Path
 
@@ -132,7 +132,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'books' / 'templates'], # مسیر پوشه تمپلیت‌های ما
+        'DIRS': [BASE_DIR / 'books' / 'templates'], #  Templates folder path
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -145,7 +145,7 @@ TEMPLATES = [
     },
 ]
 
-# تنظیمات مسیر فایل‌های استاتیک (مثل CSS و JavaScript)
+# Static file path settings (such as CSS and JavaScript)
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
